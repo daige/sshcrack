@@ -8,7 +8,7 @@ from optparse   import OptionParser
 from SSHConnect import *
 from Banner     import *
 from FileParser import *
-import  time
+from time       import time
 
 
 class SSHCrack():
@@ -56,9 +56,9 @@ class SSHCrack():
         if( options.username or options.usernameFile) and (options.password or options.passwordFile):
             if options.targetIp and not options.targetIpFile:
                 self.singleMode = True
-                self.singleTarget(options)
+                self.getTarget(options)
             elif not options.targetIp and options.targetIpFile:
-                self.singleTarget(options)
+                self.getTarget(options)
             else:
                 parser.print_help()
                 exit(0)
@@ -66,8 +66,9 @@ class SSHCrack():
             parser.print_help()
             exit(0)
 
-    def singleTarget(self,options):
+    def getTarget(self,options):
         if options.targetIp and not options.targetIpFile:
+         #   self.targetIps.append(options.targetIp)
             self.targetIp = options.targetIp
         else:
            self.targetIps = fileToList(options.targetIpFile)
@@ -111,6 +112,7 @@ class SSHCrack():
         print "[*]Testing Target: %s username: %s  password: %s success: %d " % (targetIp,username,password,connection.status)
 
     def crack(self):
+
         if self.singleMode:
             for username in self.usernames:
                 for password in self.passwords:
