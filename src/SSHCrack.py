@@ -93,7 +93,7 @@ class SSHCrack():
         self.crack()
         
     def showStartInfo(self,options):
-        print "[*]Starte cracking..."
+        print "[*]start cracking..."
 
         if self.singleMode:
             print "[*]IP= %s " % self.targetIp
@@ -151,8 +151,8 @@ class SSHCrack():
         self.clearOldThreads()
 
     def clearOldThreads(self):
-        self.connection = []
-        self.threads = 0
+        self.connections = []
+        self.currentThreadCount = 0
 
     def completed(self):
         print "[*] Crack Completed"
